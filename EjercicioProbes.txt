@@ -1,0 +1,23 @@
+EJERCICIO HEALTH CHECKS			Last Update: 17-Enero-2024
+========================
+
+En el proyecto "welcome" usando el usuario "developer", se va a desplegar una aplicación php usando el código fuente proporcionado 
+en el fichero "welcome-php.tar.gz". Dicha aplicación tendrá el nombre de "hola", usará un DC y se usará como IC de construcción 
+la imagen de:
+
+	registry.access.redhat.com/ubi8/php-73:latest
+
+La aplicación dará servicio en http://welcome.<dominio_OCP>.
+
+La aplicación debe tener un health check que comprueben si la app está lista para recibir peticiones, usando el endpoint API
+/healthz.php con una periodicidad de 5 segundos, que espere 4 segundos a que la aplicación esté desplegada para ser ejecutado 
+y tras 5 fallos consecutivos el probe se considerará fallido. Y un segundo health check que compruebe que la app está funcionando
+usando un socket al puerto de la app con una periodicidad de 2 segundos, que haga 3 pruebas exitosas tras un fallo y que espere
+3 segundos a realizar la primera prueba.
+
+Una vez desplegada la app, hacer modificaciones en el código fuente para que esté en castellano y que la aplicación se reconstruya
+usando un comando curl al webhook trigger genérico con las opciones -k -X POST.
+
+
+NOTA: Junto con el código fuente, se proporciona el Containerfile para construir la aplicación que en este 
+      ejercicio no es necesario.
